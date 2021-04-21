@@ -21,3 +21,4 @@ flask_security
 email_validator
 Flask-Social
 paginate_sqlalchemy
+pylint
