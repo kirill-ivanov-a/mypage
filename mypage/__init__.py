@@ -2,7 +2,6 @@ from flask import Flask
 from flask_security import Security, SQLAlchemySessionUserDatastore
 from mypage.database import db_session, Base
 from mypage.models import VKUser, User, Role
-from mypage.database import db_session
 from mypage.database import init_db
 from mypage.admin import admin
 from mypage.vk_auth import oauth, bp as vk_bp

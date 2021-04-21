@@ -25,4 +25,3 @@ class Paginator(SqlalchemyOrmPage):
             page_range += list(p for p in range(self.page, self.last_page + 1))
 
         return page_range
-
