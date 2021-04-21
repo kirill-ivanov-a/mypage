@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% set active_page = "contacts" %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<section class="ftco-section ftco-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center">
+            <div class="col-md-8 ftco-animate">
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="index.html">Главная</a></span>
+                    <span>Контакты</span>
+                </p>
+                <h1 class="bread">Контакты</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section contact-section">
+    <div class="container">
+        <div class="row d-flex mb-5 contact-info ftco-animate">
+            <div class="col-md-12 mb-4">
+                <h2 class="h3 font-weight-bold">Моя контактная информация</h2>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-light p-4">
+                    <p>
+                        Адрес:<br/>
+                        <a href="https://goo.gl/maps/V7uSxGVoYjJso84dA" target="_blank">
+                            Санкт-Петербург, Старый Петергоф, Ботаническая ул., 66
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-light p-4">
+                    <p>
+                        Телефон:<br/>
+                        <a href="tel://79828221028" target="_blank">
+                            +7-982-822-10-28
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="info bg-light p-4">
+                    <p>
+                        Email:<br/>
+                        <a href="mailto:ivanov.kirill.a@mail.ru" target="_blank">
+                            ivanov.kirill.a@mail.ru
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row block-9 ftco-animate">
+            {% if vkuser %}
+            <div class="col-md-12 mb-4">
+                <h2 class="h3 font-weight-bold">Отправить сообщение</h2>
+            </div>
+            <div class="col-md-12 mb-4 d-flex justify-content-end">
+                <div class="d-inline ">
+                    <p class="d-inline pr-2">{{ vkuser.full_name }}</p>
+                    <a class="d-inline" href="{{ url_for('loginpass.vk_logout') }}">Выйти</a>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex">
+                <form action="{{ url_for('contacts_page') }}" onload="document.questionForm.reset();"
+                      method="POST" name="questionForm" class="bg-light p-5 contact-form">
+                    {{ question_form.csrf_token }}
+                    <div class="form-group">
+                        <label for="{{ question_form.id }}">Категория</label>
+                        {{ question_form.category(class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ vkuser.full_name }}"
+                                disabled
+                        />
+                    </div>
+                    <div class="form-group">
+                        {{ question_form.question(class_="form-control", placeholder="Вопрос") }}
+                    </div>
+                    <div class="form-group">
+                        {{ question_form.detailed_description(
+                        class_="form-control",
+                        placeholder="Детальное описание вопроса (опционально)",
+                        cols="30",
+                        rows="7") }}
+                    </div>
+                    <div class="form-group">
+                        <input
+                                type="submit"
+                                value="Отправить"
+                                class="btn btn-primary py-3 px-5"
+                        />
+                    </div>
+                </form>
+            </div>
+            {% else %}
+            <div class="col-md-12 mb-4">
+                <h2 class="h3 font-weight-bold">Войдите</h2>
+            </div>
+            <div class="col-md-12 d-flex">
+                <form action="#" class="bg-light p-5 contact-form">
+                    <p>Пожайлуйста, авторизуйтесь через ВК, чтобы оставить свой вопрос!</p>
+                    <div class="form-group">
+                        <a
+                                href="/login/vk"
+                                class="btn btn-primary py-3 px-5"
+                        >
+                            <i class="icon-vk mr-2"></i>Войти
+                        </a>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

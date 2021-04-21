@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set active_page = "index" %}
+{% block title %}Иванов Кирилл Андреевич{% endblock %}
+{% block content %}
+<section class="ftco-section-no-padding bg-light">
+          <div class="hero-wrap">
+            <div class="overlay"></div>
+            <div class="d-flex align-items-center js-fullheight">
+              <div class="author-image text img d-flex">
+                <section class="home-slider js-fullheight owl-carousel">
+                  <div
+                    class="slider-item js-fullheight"
+                    style="background-image: url('/static/images/me.jpg')"
+                  ></div>
+                </section>
+              </div>
+              <div class="author-info text p-3 p-md-5">
+                <div class="desc pt-4">
+                  <span class="subheading">Привет! Меня зовут</span>
+                  <h1 class="big-letter">Иванов Кирилл Андреевич</h1>
+                  <h1 class="mb-4"><span>Иванов Кирилл</span> Андреевич</h1>
+                  <p class="mb-4">
+                    Мне 20 лет, и я студент второго курса программной инженерии
+                    СПбГУ. Вот небольшой список моих интересов:
+                    программирование, математика, игровая индустрия, философия.
+                    Основные языки и технологии: C#, Python, git, docker. Также
+                    имел опыт разработки на C, OCaml, Haskell, Ruby, JS. В
+                    настоящее время занимаюсь разработкой на Python + Django.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}
