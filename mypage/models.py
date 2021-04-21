@@ -1,10 +1,9 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, Enum, ForeignKey, Table, Boolean
-from mypage.database import Base, db_session
-from flask_security import UserMixin, RoleMixin
-from sqlalchemy.orm import relationship, backref
-from datetime import datetime
-
 import enum
+from datetime import datetime
+from flask_security import UserMixin, RoleMixin
+from sqlalchemy import Column, Integer, String, DateTime, Text, Enum, ForeignKey, Table, Boolean
+from sqlalchemy.orm import relationship, backref
+from mypage.database import Base, db_session
 
 roles_users = Table('roles_users',
                     Base.metadata,
@@ -47,7 +46,8 @@ class VKUser(Base, ModelBase):
     gender = Column(String(255), nullable=True)
     questions = relationship('Question')
 
-    def __init__(self, vk_uid, first_name, last_name, preferred_username, picture_url, gender):
+    def __init__(self, vk_uid=None, first_name=None, last_name=None,
+                 preferred_username=None, picture_url=None, gender=None):
         self.vk_uid = vk_uid
         self.first_name = first_name
         self.last_name = last_name

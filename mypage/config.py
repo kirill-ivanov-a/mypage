@@ -1,7 +1,7 @@
 import os
 
-static_url_path = '/static'
-instance_relative_config = True
+STATIC_URL_PATH = '/static'
+INSTANCE_RELATIVE_CONFIG = True
 SECRET_KEY = os.getenv('SECRET_KEY')
 VK_CLIENT_ID = os.getenv('VK_CLIENT_ID')
 VK_CLIENT_SECRET = os.getenv('VK_CLIENT_SECRET')
