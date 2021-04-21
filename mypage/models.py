@@ -11,7 +11,13 @@ roles_users = Table('roles_users',
                     Column('role_id', Integer, ForeignKey('role.id')))
 
 
-class User(Base, UserMixin):
+class ModelBase:
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+
+class User(Base, UserMixin, ModelBase):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -21,17 +27,11 @@ class User(Base, UserMixin):
     roles = relationship('Role', secondary=roles_users, backref=backref('user'), lazy='dynamic')
 
 
-class Role(Base, RoleMixin):
+class Role(Base, RoleMixin, ModelBase):
     __tablename__ = 'role'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(100), unique=True)
-
-
-class ModelBase:
-    def save(self):
-        db_session.add(self)
-        db_session.commit()
 
 
 class VKUser(Base, ModelBase):
