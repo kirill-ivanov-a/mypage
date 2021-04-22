@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_security import Security, SQLAlchemySessionUserDatastore
-from database import db_session
+from database import db_session, init_db
 from models import User, Role
-from database import init_db
 from admin import admin
 from vk_auth import oauth, bp as vk_bp
 
