@@ -3,7 +3,7 @@ from datetime import datetime
 from flask_security import UserMixin, RoleMixin
 from sqlalchemy import Column, Integer, String, DateTime, Text, Enum, ForeignKey, Table, Boolean
 from sqlalchemy.orm import relationship, backref
-from mypage.database import Base, db_session
+from database import Base, db_session
 
 roles_users = Table('roles_users',
                     Base.metadata,

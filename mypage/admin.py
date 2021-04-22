@@ -4,8 +4,8 @@ from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 from werkzeug.utils import redirect
 
-from mypage.database import db_session
-from mypage.models import Question, Answer, VKUser
+from database import db_session
+from models import Question, Answer, VKUser
 
 
 class HomeAdminView(AdminIndexView):

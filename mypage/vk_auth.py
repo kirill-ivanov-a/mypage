@@ -4,7 +4,7 @@ from loginpass import VK, create_flask_blueprint
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
-from mypage import VKUser
+from models import VKUser
 
 oauth = OAuth()
 backends = [VK]
