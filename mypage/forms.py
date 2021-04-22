@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField
 from wtforms.validators import DataRequired
 
-from mypage.models import CategoryEnum
+from models import CategoryEnum
 
 
 class QuestionForm(FlaskForm):
