@@ -1,9 +1,9 @@
 from werkzeug.utils import redirect
 from flask import render_template, session, request, url_for
-from mypage import app
-from mypage.forms import QuestionForm
-from mypage.models import Question, Answer, CategoryEnum
-from mypage.paginator import Paginator
+from app import app
+from forms import QuestionForm
+from models import Question, Answer, CategoryEnum
+from paginator import Paginator
 
 
 @app.route("/")
