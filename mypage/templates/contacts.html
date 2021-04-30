@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% set active_page = "contacts" %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<div class="js-fullheight">
+    <section class="ftco-section ftco-bread">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center">
+                <div class="col-md-8 ftco-animate">
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="index.html">Главная</a></span>
+                        <span>Контакты</span>
+                    </p>
+                    <h1 class="bread">Контакты</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ftco-section contact-section">
+        <div class="container">
+            <div class="row d-flex mb-5 contact-info ftco-animate">
+                <div class="col-md-12 mb-4">
+                    <h2 class="h3 font-weight-bold">Моя контактная информация</h2>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-4 d-flex">
+                    <div class="info bg-light p-4">
+                        <p>
+                            Адрес:<br/>
+                            <a href="https://goo.gl/maps/V7uSxGVoYjJso84dA" target="_blank">
+                                Санкт-Петербург, Старый Петергоф, Ботаническая ул., 66
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="info bg-light p-4">
+                        <p>
+                            Телефон:<br/>
+                            <a href="tel://79828221028" target="_blank">
+                                +7-982-822-10-28
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="info bg-light p-4">
+                        <p>
+                            Email:<br/>
+                            <a href="mailto:ivanov.kirill.a@mail.ru" target="_blank">
+                                ivanov.kirill.a@mail.ru
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

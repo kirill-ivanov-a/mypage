@@ -23,23 +23,20 @@
             rel="stylesheet"
     />
 
-    <!--    <link rel="stylesheet" href="/static/open-iconic-bootstrap.min.css"/>-->
     <link rel="stylesheet" href="/static/css/animate.css"/>
 
     <link rel="stylesheet" href="/static/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="/static/css/owl.theme.default.min.css"/>
     <link rel="stylesheet" href="/static/css/magnific-popup.css"/>
 
-    <link rel="stylesheet" href="/static/css/aos.css"/>
-
     <link rel="stylesheet" href="/static/css/ionicons.min.css"/>
-
-    <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css"/>
-    <link rel="stylesheet" href="/static/css/jquery.timepicker.css"/>
+    <link rel="stylesheet" href="/static/css/jquery-confirm.min.css">
 
     <link rel="stylesheet" href="/static/css/flaticon.css"/>
     <link rel="stylesheet" href="/static/css/icomoon.css"/>
     <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery-confirm.min.js"></script>
 </head>
 {% set navigation_bar = [
 (url_for('index_page'), 'index', 'Главная'),
@@ -161,7 +158,7 @@
     </svg>
 </div>
 
-<script src="/static/js/jquery.min.js"></script>
+{% block js %}{% endblock %}
 <script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/static/js/popper.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
@@ -172,11 +169,7 @@
 <script src="/static/js/jquery.magnific-popup.min.js"></script>
 <script src="/static/js/aos.js"></script>
 <script src="/static/js/jquery.animateNumber.min.js"></script>
-<script src="/static/js/bootstrap-datepicker.js"></script>
-<!--<script src="/static/js/jquery.timepicker.min.js"></script>-->
 <script src="/static/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/static/js/google-map.js"></script>
 <script src="/static/js/main.js"></script>
 </body>
 </html>

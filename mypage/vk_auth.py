@@ -17,7 +17,7 @@ def vk_handle_authorize(remote, token, user_info):
             vkuser = create_vkuser(user_info)
             vkuser.save()
         session['vkuser'] = get_vkuserinfo(vkuser)
-        return redirect(url_for('contacts_page'))
+        return redirect(url_for('questions_page'))
     return abort(404)
 
 
