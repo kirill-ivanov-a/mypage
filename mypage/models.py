@@ -59,7 +59,7 @@ class VKUser(Base, ModelBase):
         return f'<User {self.first_name} {self.last_name}>'
 
     def __str__(self):
-        return f'<User {self.first_name} {self.last_name}>'
+        return self.__repr__()
 
 
 class CategoryEnum(enum.Enum):
@@ -103,10 +103,13 @@ class Question(Base, ModelBase):
         self.detailed_description = detailed_description
 
     def __repr__(self):
-        return f'<Question id: {self.id};category: {self.category}; {self.question}>'
+        return f'<Question: {self.question}; ' \
+               f'category: {self.category}; ' \
+               f'{self.question}; ' \
+               f'deatailed: {self.detailed_description}>'
 
     def __str__(self):
-        return f'<Question: {self.question}>'
+        return self.__repr__()
 
 
 class Answer(Base, ModelBase):
@@ -116,9 +119,10 @@ class Answer(Base, ModelBase):
     question_id = Column(Integer, ForeignKey('question.id'))
     question = relationship("Question", back_populates="answer")
     answer = Column(Text, nullable=False)
+    publication_date = Column(DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<Answer: {self.answer}; question: {self.question_id} >'
 
     def __str__(self):
-        return f'<Answer: {self.answer}>'
+        return self.__repr__()

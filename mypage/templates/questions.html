@@ -10,7 +10,8 @@
                     <span class="mr-2"><a href="index.html">Главная</a></span>
                     <span>Q&A</span>
                 </p>
-                <h1 class="bread"> {% if category %} {{ category.get_ru_name() }} {% else %} Вопросы и ответы {% endif %}</h1>
+                <h1 class="bread"> {% if category %} {{ category.get_ru_name() }} {% else %} Вопросы и ответы {% endif
+                    %}</h1>
             </div>
         </div>
     </div>
@@ -51,20 +52,20 @@
                                     </a>
                                 </li>
                                 {% for page in answers.page_range %}
-                                    {% if not page %}
-                                        <li class="px-2">...</li>
-                                    {% elif answers.page == page %}
-                                        <li class="active">
-                                            <span>{{ page }}</span>
-                                        </li>
-                                    {% else %}
-                                        <li>
-                                            <a href="{{url_for('questions_page', page=page, category=category.value)}}"
-                                               class="btn d-flex justify-content-center align-items-center">
-                                                {{ page }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
+                                {% if not page %}
+                                <li class="px-2">...</li>
+                                {% elif answers.page == page %}
+                                <li class="active">
+                                    <span>{{ page }}</span>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="{{url_for('questions_page', page=page, category=category.value)}}"
+                                       class="btn d-flex justify-content-center align-items-center">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                                {% endif %}
                                 {% endfor %}
                                 <li>
                                     <a href="{{url_for('questions_page', page=answers.next_page, category=category.value)}}"
@@ -76,11 +77,71 @@
                         </div>
                     </div>
                 </div>
+                <div class="row block-9 ftco-animate mt-5 px-lg-3 mb-lg-0 mb-5 px-1">
+                    <div class="col-md-12 mb-2 mt-5">
+                        <h2 class="h3 font-weight-bold">Оставить вопрос</h2>
+                    </div>
+                    {% if vkuser %}
+                    <div class="col-md-12 mb-4 d-flex justify-content-end m-0 p-0">
+                        <div class="d-inline m-0 p-0">
+                            <p class="d-inline">{{ vkuser.full_name }}</p>
+                            <a class="d-inline" href="{{ url_for('loginpass.vk_logout') }}">Выйти</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex bg-light w-100">
+                        <form id="target" action="{{ url_for('questions_page') }}"
+                              method="POST" name="questionForm" class="contact-form pt-5 pb-3 px-5 w-100">
+                            {{ question_form.csrf_token }}
+                            <div class="form-group">
+                                <label for="{{ question_form.id }}">Категория</label>
+                                {{ question_form.category(class_="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="{{ vkuser.full_name }}"
+                                        disabled
+                                />
+                            </div>
+                            <div class="form-group">
+                                {{ question_form.question(class_="form-control", placeholder="Вопрос") }}
+                            </div>
+                            <div class="form-group">
+                                {{ question_form.detailed_description(
+                                class_="form-control",
+                                placeholder="Детальное описание вопроса (опционально)",
+                                cols="30",
+                                rows="7") }}
+                            </div>
+                            <div class="form-group">
+                                <button class="example2 btn btn-primary py-3 px-5">
+                                    Отправить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="col-md-12 d-flex bg-light">
+                        <form action="#" class="contact-form p-5 w-100">
+                            <p>Пожайлуйста, авторизуйтесь через ВК, чтобы оставить свой вопрос!</p>
+                            <div class="form-group">
+                                <a
+                                        href="/login/vk"
+                                        class="btn btn-primary py-3 px-5"
+                                >
+                                    <i class="icon-vk mr-2"></i>Войти
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            <div class="col-lg-4 sidebar ftco-animate bg-light">
-                <div class="sidebar-box ftco-animate">
-                    <h3 class="sidebar-heading">Категории</h3>
-                    <ul class="categories">
+            <div class="col-lg-4 sidebar ftco-animate px-1">
+                <div class="h-100 bg-light sidebar-box ftco-animate">
+                    <h3 class="sidebar-heading p-lg-3 px-5 pt-5 pb-0">Категории</h3>
+                    <ul class="categories p-lg-3 px-5 pb-5">
                         <li>
                             <a href="{{url_for('questions_page', page=answers.first_page)}}">
                                 Все
@@ -100,4 +161,8 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/popup.js"></script>
 {% endblock %}
