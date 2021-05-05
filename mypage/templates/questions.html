@@ -10,8 +10,12 @@
                     <span class="mr-2"><a href="index.html">Главная</a></span>
                     <span>Q&A</span>
                 </p>
-                <h1 class="bread"> {% if category %} {{ category.get_ru_name() }} {% else %} Вопросы и ответы {% endif
-                    %}</h1>
+                <h1 class="bread">
+                    {% if category %}
+                    {{ category.get_ru_name() }}
+                    {% else %} Вопросы и ответы
+                    {% endif %}
+                </h1>
             </div>
         </div>
     </div>
@@ -28,7 +32,7 @@
                                 <h3 class="mb-2">{{ answer.question.question }}</h3>
                                 <div class="meta-wrap">
                                     <p class="meta">
-                                        <span>{{ answer.question.publication_date.strftime("%b. %d, %Y") }}</span>
+                                        <span>{{ answer.question.publication_date.strftime("%d.%m.%Y") }}</span>
                                         <span>{{ answer.question.category.get_ru_name() }}</span>
                                     </p>
                                 </div>
@@ -78,9 +82,6 @@
                     </div>
                 </div>
                 <div class="row block-9 ftco-animate mt-5 px-lg-3 mb-lg-0 mb-5 px-1">
-                    <div class="col-md-12 mb-2 mt-5">
-                        <h2 class="h3 font-weight-bold">Оставить вопрос</h2>
-                    </div>
                     {% if vkuser %}
                     <div class="col-md-12 mb-4 d-flex justify-content-end m-0 p-0">
                         <div class="d-inline m-0 p-0">
@@ -91,6 +92,7 @@
                     <div class="col-md-12 d-flex bg-light w-100">
                         <form id="target" action="{{ url_for('questions_page') }}"
                               method="POST" name="questionForm" class="contact-form pt-5 pb-3 px-5 w-100">
+                            <h3 class="sidebar-heading pb-4">Оставить вопрос</h3>
                             {{ question_form.csrf_token }}
                             <div class="form-group">
                                 <label for="{{ question_form.id }}">Категория</label>
@@ -122,15 +124,18 @@
                         </form>
                     </div>
                     {% else %}
-                    <div class="col-md-12 d-flex bg-light">
-                        <form action="#" class="contact-form p-5 w-100">
+                    <div class="col-md-12 bg-light">
+                        <div class="col-md-12 mb-2 mt-5 px-5">
+                            <h2 class="sidebar-heading pb-3">Оставить вопрос</h2>
+                        </div>
+                        <form action="#" class="contact-form pt-3 pb-5 px-5 w-100">
                             <p>Пожайлуйста, авторизуйтесь через ВК, чтобы оставить свой вопрос!</p>
-                            <div class="form-group">
+                            <div class="form-group pt-1">
                                 <a
                                         href="/login/vk"
                                         class="btn btn-primary py-3 px-5"
                                 >
-                                    <i class="icon-vk mr-2"></i>Войти
+                                    <i class="icon-vk mr-1"></i>Войти
                                 </a>
                             </div>
                         </form>
@@ -139,7 +144,7 @@
                 </div>
             </div>
             <div class="col-lg-4 sidebar ftco-animate px-1">
-                <div class="h-100 bg-light sidebar-box ftco-animate">
+                <div class="h-100 bg-light sidebar-box ftco-animate px-3">
                     <h3 class="sidebar-heading p-lg-3 px-5 pt-5 pb-0">Категории</h3>
                     <ul class="categories p-lg-3 px-5 pb-5">
                         <li>

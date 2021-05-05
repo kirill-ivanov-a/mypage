@@ -44,7 +44,7 @@ class VKUser(Base, ModelBase):
     preferred_username = Column(String(255), nullable=True, unique=True)
     picture_url = Column(String(512), nullable=True)
     gender = Column(String(255), nullable=True)
-    questions = relationship('Question')
+    questions = relationship("Question", back_populates="vkuser")
 
     def __init__(self, vk_uid=None, first_name=None, last_name=None,
                  preferred_username=None, picture_url=None, gender=None):
@@ -56,7 +56,7 @@ class VKUser(Base, ModelBase):
         self.gender = gender
 
     def __repr__(self):
-        return f'<User {self.first_name} {self.last_name}>'
+        return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
         return self.__repr__()
@@ -89,7 +89,8 @@ class Question(Base, ModelBase):
     __tablename__ = 'question'
 
     id = Column(Integer, primary_key=True)
-    vkuser_id = Column('vkuser_id', Integer, ForeignKey('vkuser.id'), nullable=True)
+    vkuser_id = Column(Integer, ForeignKey('vkuser.id'))
+    vkuser = relationship("VKUser", back_populates="questions")
     publication_date = Column(DateTime, default=datetime.utcnow)
     category = Column(Enum(CategoryEnum), nullable=False)
     question = Column(String(255), nullable=False)
@@ -103,10 +104,10 @@ class Question(Base, ModelBase):
         self.detailed_description = detailed_description
 
     def __repr__(self):
-        return f'<Question: {self.question}; ' \
-               f'category: {self.category}; ' \
-               f'{self.question}; ' \
-               f'deatailed: {self.detailed_description}>'
+        return f'<Вопрос: {self.question}; ' \
+               f'Автор: {self.vkuser}; ' \
+               f'Категория: {self.category.get_ru_name()}; ' \
+               f'Детальное описание: {self.detailed_description}>'
 
     def __str__(self):
         return self.__repr__()
