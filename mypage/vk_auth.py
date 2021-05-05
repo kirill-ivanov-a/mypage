@@ -1,5 +1,5 @@
 from authlib.integrations.flask_client import OAuth
-from flask import session, url_for
+from flask import session, url_for, request
 from loginpass import VK, create_flask_blueprint
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
@@ -45,5 +45,6 @@ bp = create_flask_blueprint(backends, oauth, vk_handle_authorize)
 
 @bp.route("/logout/vk")
 def vk_logout():
+    url = request.values.get("url") or request.headers.get("Referer")
     session.clear()
-    return redirect(url_for('index_page'))
+    return redirect(url) if url else redirect(url_for('index_page'))
