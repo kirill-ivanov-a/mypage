@@ -86,11 +86,11 @@
                     <div class="col-md-12 mb-4 d-flex justify-content-end m-0 p-0">
                         <div class="d-inline m-0 p-0">
                             <p class="d-inline">{{ vkuser.full_name }}</p>
-                            <a class="d-inline" href="{{ url_for('loginpass.vk_logout') }}">Выйти</a>
+                            <a id="logout" class="d-inline" href="{{ url_for('loginpass.vk_logout') }}">Выйти</a>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex bg-light w-100">
-                        <form id="target" action="{{ url_for('questions_page') }}"
+                        <form id="questionForm" action="{{ url_for('questions_page') }}"
                               method="POST" name="questionForm" class="contact-form pt-5 pb-3 px-5 w-100">
                             <h3 class="sidebar-heading pb-4">Оставить вопрос</h3>
                             {{ question_form.csrf_token }}
